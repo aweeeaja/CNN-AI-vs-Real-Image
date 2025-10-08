@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Image Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/multi.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Processing your images...</p>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- Button Back to Home -->
+        <a href="/" class="back-button">← Home</a>
+
+        <header>
+            <div class="header-content">
+                <img src="{{ url_for('static', filename='images/Untitled-1.png') }}" alt="Logo" class="logo">
+                <h1>Multi Image Classifier</h1>
+                <p>
+                    This tool allows you to upload multiple images and classify them using our state-of-the-art AI model.  
+                    Please ensure you upload at least two images to proceed.
+                </p>
+            </div>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <h2>Upload Your Images</h2>
+                <form id="multi-upload-form" action="/multi-upload" method="POST" enctype="multipart/form-data">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="multi-file-input" name="files" accept="image/*" multiple required>
+                        <label for="multi-file-input">Choose Images</label>
+                    </div>
+                    <div id="multi-image-preview" class="image-preview">
+                        <p>No images selected</p>
+                    </div>
+                    <button type="submit" class="button" id="submit-button" disabled>Classify Images</button>
+                </form>
+            </section>
+
+            {% if predictions %}
+            <section class="result">
+                <h2>Prediction Results</h2>
+                <div class="result-grid">
+                    {% for file, prediction in predictions %}
+                    <div class="result-item">
+                        <img src="{{ file }}" alt="Image Preview" class="result-image">
+                        <p><strong>Predicted Label:</strong> {{ prediction }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% elif error %}
+            <section class="error">
+                <div class="error-box">
+                    <p>{{ error }}</p>
+                </div>
+            </section>
+            {% endif %}
+
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Multi Image Classifier. Designed for precision and efficiency.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/multi.js') }}"></script>
+</body>
+</html>

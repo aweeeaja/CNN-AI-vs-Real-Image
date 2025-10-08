@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Image Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p>Loading... Please wait</p>
+    </div>
+
+    
+    <div class="main-wrapper">
+        <a href="/" class="home-button">Home</a>
+        <header>
+            <div class="header-content">
+                <img src="{{ url_for('static', filename='images/Untitled-1.png') }}" alt="Logo" class="logo">
+                <h1>Single Image Classifier</h1>
+                <p>This tool utilizes state-of-the-art Convolutional Neural Networks (CNNs) to classify 
+                    images with remarkable accuracy. Designed for professionals and enthusiasts, it delivers 
+                    reliable predictions for your projects or experiments.</p>
+            </div>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <h2>Upload Your Image</h2>
+                <form id="single-upload-form" action="/single-upload" method="POST" enctype="multipart/form-data">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="file-input" name="file" accept="image/*" required>
+                        <label for="file-input">Choose an Image</label>
+                    </div>
+                    <div id="image-preview">
+                        <p>No images selected</p>
+                    </div>
+                    <button type="submit" class="button">Classify Image</button>
+                </form>
+            </section>
+
+            {% if prediction %}
+            <section class="result">
+                <h2>Prediction Result</h2>
+                <div class="result-box">
+                    <p><strong>Predicted Label:</strong> {{ prediction }}</p>
+                </div>
+            </section>
+            {% elif error %}
+            <section class="error">
+                <div class="error-box">
+                    <p>{{ error }}</p>
+                </div>
+            </section>
+            {% endif %}
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Single Image Classifier. Designed with precision and care.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier - Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Welcome.css') }}">
+    <!-- <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon"> -->
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/Untitled-1.png') }}" alt="Logo">
+            </div>
+            <h1>Welcome to Image Classifier</h1>
+            <p>Your reliable tool for image classification using CNN.</p>
+        </header>
+
+        <section class="about">
+            <h2>What is Image Classifier?</h2>
+            <p>
+                This web tool leverages advanced machine learning models to classify images into predefined categories. 
+                Whether you're analyzing data or testing images, our tool simplifies the process with high accuracy.
+            </p>
+        </section>
+
+        <section class="features">
+            <h2>Features</h2>
+            <div class="feature-cards">
+                <div class="card">
+                    <h3>Single Image Classification</h3>
+                    <p>Upload a single image and get instant predictions.</p>
+                    <a href="/single-upload" class="button">Try Now</a>
+                </div>
+                <div class="card">
+                    <h3>Multi-Image Classification</h3>
+                    <p>Batch upload multiple images for classification.</p>
+                    <a href="/multi-upload" class="button">Explore</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Image Classifier. Built with ❤️ for AI enthusiasts.</p>
+        </footer>
+    </div>
+</body>
+</html>
